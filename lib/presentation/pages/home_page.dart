@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/user_entity.dart';
 import '../bloc/auth/auth_bloc.dart';
 import 'auth/login_page.dart';
+import 'profile_page.dart';
 
 /// Halaman Home sederhana yang menampilkan nama dan role user yang login
 class HomePage extends StatelessWidget {
@@ -29,6 +30,16 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Home'),
           actions: [
+            IconButton(
+              icon: const Icon(Icons.person),
+              tooltip: 'Profil Saya',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => ProfilePage(user: user)),
+                );
+              },
+            ),
             IconButton(
               icon: const Icon(Icons.logout),
               tooltip: 'Sign Out',
