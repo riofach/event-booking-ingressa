@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../core/utils/page_transition.dart';
 import '../../bloc/auth/auth_bloc.dart';
 import 'login_page.dart';
 import '../home_page.dart';
@@ -93,7 +94,11 @@ class _RegisterPageState extends State<RegisterPage> {
             final user = state.user;
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (_) => HomePage(user: user)),
+              PageTransition.fadeScale(
+                page: HomePage(user: user),
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeOutQuad,
+              ),
             );
             ScaffoldMessenger.of(context)
               ..clearSnackBars()
@@ -145,8 +150,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         onPressed: () {
                           Navigator.pushAndRemoveUntil(
                             context,
-                            MaterialPageRoute(
-                              builder: (_) => const LoginPage(),
+                            PageTransition.slideLeft(
+                              page: const LoginPage(),
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeOutQuad,
                             ),
                             (route) => false,
                           );

@@ -6,6 +6,7 @@ import '../home_page.dart';
 import '../../../core/utils/firebase_error_mapper.dart';
 import '../../widgets/primary_button.dart';
 import '../../../core/themes/app_colors.dart';
+import '../../../core/utils/page_transition.dart';
 import 'forgot_password_page.dart';
 import '../../../core/utils/auth_storage.dart';
 
@@ -79,7 +80,11 @@ class _LoginPageState extends State<LoginPage> {
   void _onNavigateToRegister() {
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (_) => const RegisterPage()),
+      PageTransition.slideRight(
+        page: const RegisterPage(),
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeOutQuad,
+      ),
       (route) => false,
     );
   }
@@ -88,7 +93,11 @@ class _LoginPageState extends State<LoginPage> {
   void _onForgotPassword() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => const ForgotPasswordPage()),
+      PageTransition.fadeScale(
+        page: const ForgotPasswordPage(),
+        duration: const Duration(milliseconds: 400),
+        beginScale: 0.95,
+      ),
     );
   }
 
@@ -158,7 +167,11 @@ class _LoginPageState extends State<LoginPage> {
 
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (_) => HomePage(user: user)),
+              PageTransition.fadeScale(
+                page: HomePage(user: user),
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeOutQuad,
+              ),
             );
           } else if (state is AuthFailure) {
             ScaffoldMessenger.of(context)

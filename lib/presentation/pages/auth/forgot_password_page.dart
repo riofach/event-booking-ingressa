@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/themes/app_colors.dart';
+import '../../../core/utils/page_transition.dart';
 import '../../widgets/primary_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'forgot_password_success_page.dart';
@@ -48,7 +49,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         // Navigate to success page
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => const ForgotPasswordSuccessPage()),
+          PageTransition.fadeScale(
+            page: const ForgotPasswordSuccessPage(),
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeOutQuad,
+          ),
         );
       } catch (e) {
         setState(() => _isLoading = false);

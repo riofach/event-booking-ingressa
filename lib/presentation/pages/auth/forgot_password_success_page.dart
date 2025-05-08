@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../../core/themes/app_colors.dart';
+import '../../../core/utils/page_transition.dart';
 import 'login_page.dart';
 
 class ForgotPasswordSuccessPage extends StatefulWidget {
@@ -43,7 +44,11 @@ class _ForgotPasswordSuccessPageState extends State<ForgotPasswordSuccessPage> {
   void _navigateToLogin() {
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (_) => const LoginPage()),
+      PageTransition.scale(
+        page: const LoginPage(),
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeOutQuad,
+      ),
       (route) => false,
     );
   }

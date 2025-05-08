@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/themes/app_colors.dart';
+import '../../core/utils/page_transition.dart';
 import '../widgets/primary_button.dart';
 import 'auth/login_page.dart';
 import 'home_page.dart';
@@ -64,7 +65,11 @@ class _OnboardingPageState extends State<OnboardingPage>
   void _navigateToLogin() {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => const LoginPage()),
+      PageTransition.slideLeft(
+        page: const LoginPage(),
+        duration: const Duration(milliseconds: 800),
+        curve: Curves.easeOutQuad,
+      ),
     );
   }
 

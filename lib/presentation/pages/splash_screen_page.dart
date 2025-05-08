@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../core/themes/app_colors.dart';
 import '../../core/utils/auth_storage.dart';
+import '../../core/utils/page_transition.dart';
 import '../../domain/entities/user_entity.dart';
 import 'auth/login_page.dart';
 import 'home_page.dart';
@@ -31,11 +32,15 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       // User data ada di SharedPreferences, konversi ke UserEntity
       final user = UserEntity.fromMap(userData);
 
-      // Langsung arahkan ke HomePage
+      // Langsung arahkan ke HomePage dengan animasi
       if (mounted) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => HomePage(user: user)),
+          PageTransition.fadeScale(
+            page: HomePage(user: user),
+            duration: const Duration(milliseconds: 800),
+            curve: Curves.easeOutQuad,
+          ),
         );
       }
     } else {
@@ -43,7 +48,11 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       if (mounted) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => const OnboardingPage()),
+          PageTransition.fadeScale(
+            page: const OnboardingPage(),
+            duration: const Duration(milliseconds: 800),
+            curve: Curves.easeOutQuad,
+          ),
         );
       }
     }
