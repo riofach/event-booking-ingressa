@@ -4,6 +4,7 @@ import '../../domain/entities/user_entity.dart';
 import '../bloc/auth/auth_bloc.dart';
 import 'auth/login_page.dart';
 import 'profile_page.dart';
+import '../../core/utils/auth_storage.dart';
 
 /// Halaman Home sederhana yang menampilkan nama dan role user yang login
 class HomePage extends StatelessWidget {
@@ -44,6 +45,7 @@ class HomePage extends StatelessWidget {
               icon: const Icon(Icons.logout),
               tooltip: 'Sign Out',
               onPressed: () {
+                AuthStorage.clearUserCredentials();
                 context.read<AuthBloc>().add(SignOutEvent());
               },
             ),

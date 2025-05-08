@@ -54,6 +54,7 @@ dependencies:
 
   # HTTP (untuk integrasi ImageKit)
   http: ^1.3.0
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:
@@ -91,17 +92,16 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  fonts:
+    - family: NunitoSans
+      fonts:
+        - asset: assets/fonts/nunito-sans.regular.ttf
+        - asset: assets/fonts/nunito-sans.semibold.ttf
+          weight: 600
+        - asset: assets/fonts/nunito-sans.bold.ttf
+          weight: 700
+        - asset: assets/fonts/nunito-sans.extrabold.ttf
+          weight: 800
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

@@ -5,6 +5,7 @@ import '../../../domain/usecases/auth/login_with_google.dart';
 import '../../../domain/usecases/auth/sign_out.dart';
 import '../../../domain/entities/user_entity.dart';
 import '../../../domain/usecases/auth/reset_password.dart';
+import '../../../core/utils/auth_storage.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -96,9 +97,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     // Event: Sign out
     on<SignOutEvent>((event, emit) async {
-      emit(AuthLoading());
       try {
+        emit(AuthLoading());
         await signOut();
+        // Hapus data Remember Me saat sign out
+        await AuthStorage.clearUserCredentials();
         emit(AuthSignedOut());
       } catch (e) {
         emit(AuthFailure(e.toString()));
